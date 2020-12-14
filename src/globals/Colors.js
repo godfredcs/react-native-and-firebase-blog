@@ -1,4 +1,5 @@
 export default {
+    accent: 'rgb(52, 29, 92)',
     BG_COLORS: [
         'rgb(103, 58, 183)',
         'rgb(93, 52, 165)',
