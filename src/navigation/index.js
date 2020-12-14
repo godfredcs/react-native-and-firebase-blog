@@ -1,8 +1,9 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {UserContext} from './../modules/Users/store/UserContext';
 
-import {LoginScreen} from './../screens';
+import {LoginScreen, HomeScreen} from './../screens';
 
 const Stack = createStackNavigator();
 
@@ -13,13 +14,15 @@ const Auth = () => (
 );
 
 const Main = () => (
-    <Stack.Navigator headerMode="none" initialRouteName="LoginScreen">
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+    <Stack.Navigator initialRouteName="HomeScreen">
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
     </Stack.Navigator>
 );
 
 const AppNavigation = () => {
-    return <NavigationContainer>{true ? <Auth /> : <Main />}</NavigationContainer>;
+    const {userState: { is_authenticated }} = React.useContext(UserContext);
+
+    return <NavigationContainer>{!is_authenticated ? <Auth /> : <Main />}</NavigationContainer>;
 };
 
 export default AppNavigation;
