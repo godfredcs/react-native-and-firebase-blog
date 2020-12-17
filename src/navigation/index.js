@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import {UserContext} from './../modules/Users/store/UserContext';
 
 import {LoginScreen, HomeScreen} from './../screens';
@@ -20,7 +21,9 @@ const Main = () => (
 );
 
 const AppNavigation = () => {
-    const {userState: { is_authenticated }} = React.useContext(UserContext);
+    const {
+        userState: {is_authenticated},
+    } = React.useContext(UserContext);
 
     return <NavigationContainer>{!is_authenticated ? <Auth /> : <Main />}</NavigationContainer>;
 };

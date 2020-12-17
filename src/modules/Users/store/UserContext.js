@@ -16,11 +16,7 @@ export const UserContext = React.createContext();
 const UserProvider = ({children}) => {
     const [userState, dispatch] = React.useReducer(userReducer, initialState);
 
-    return (
-        <UserContext.Provider value={{userState, dispatch}}>
-            {children}
-        </UserContext.Provider>
-    );
+    return <UserContext.Provider value={{userState, dispatch}}>{children}</UserContext.Provider>;
 };
 
 export default UserProvider;
